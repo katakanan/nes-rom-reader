@@ -14,6 +14,7 @@ pub struct Cassette {
     pub chrrom_size: usize,
     pub prgrom: Vec<u8>,
     pub chrrom: Vec<u8>,
+    pub mapper_id: u8,
 }
 
 impl fmt::Debug for Cassette {
@@ -59,6 +60,9 @@ impl Cassette {
 
         // println!("{}", prgrom_size);
         // println!("{}", chrrom_size);
+        let mapper1 = header[6];
+        let mapper2 = header[7];
+        let mapper_id = (mapper2 & 0xF0) | (mapper1 >> 4);
 
         let mut prgrom = vec![0; prgrom_size];
         let mut chrrom = vec![0; chrrom_size];
@@ -96,6 +100,7 @@ impl Cassette {
             chrrom_size,
             prgrom,
             chrrom,
+            mapper_id,
         })
     }
 
