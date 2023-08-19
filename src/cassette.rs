@@ -14,6 +14,8 @@ pub struct Cassette {
     pub chrrom_size: usize,
     pub prgrom: Vec<u8>,
     pub chrrom: Vec<u8>,
+    pub mapper1: u8,
+    pub mapper2: u8,
     pub mapper_id: u8,
 }
 
@@ -100,6 +102,8 @@ impl Cassette {
             chrrom_size,
             prgrom,
             chrrom,
+            mapper1,
+            mapper2,
             mapper_id,
         })
     }
